@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<!--
+  CIVICA learning object — Declaring AI use: making it visible, not hidden
+  Author: Corrie Souster, Learning Technologist, European University Institute (EUI)
+  Adapted to the CIVICA frame. Text unchanged. English only for now: every
+  readable string lives in LANGS.en, so ES and DE packs can be added later.
+-->
+<html lang="en" data-theme="light"
+      data-lo-id="civica-tl-declaring-ai-use"
+      data-lo-author="Corrie Souster"
+      data-lo-institution="European University Institute"
+      data-lo-published="2026-10-20"
+      data-lo-languages="en"
+      data-lo-type="guide-with-tool"
+      data-lo-licence="CC-BY-NC-SA-4.0"
+      data-lo-audience="teacher"
+      data-lo-topics="ai-declarations,assessment-design,academic-integrity,generative-ai">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>/* Apply the system theme before first paint, so dark-mode readers see no light flash. */
+if (typeof window.matchMedia === "function" && window.matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.dataset.theme = "dark";</script>
+<title>Declaring AI use: making it visible, not hidden | CIVICA</title>
+
+<!-- ===== CIVICA learning object metadata ==========================
+     Author / institution / date: declared three times on purpose
+     (data-lo-*, <meta>, JSON-LD). Keep all three in sync.
+     ================================================================ -->
+<meta name="description" content="An AI declaration asks students to state how, if at all, they used generative AI in an assignment. Done well, it shifts the conversation from catching students to understanding their process. This guide shows an example declaration tool, explains why you might use one, and walks through what to think about before you do."/>
+<meta name="author" content="Corrie Souster"/>
+<meta name="theme-color" content="#244f9d"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Declaring AI use: making it visible, not hidden"/>
+<meta property="og:description" content="An AI declaration asks students to state how, if at all, they used generative AI in an assignment. Done well, it shifts the conversation from catching students to understanding their process. This guide shows an example declaration tool, explains why you might use one, and walks through what to think about before you do."/>
+<meta property="og:site_name" content="Teaching and Learning with CIVICA"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Declaring AI use: making it visible, not hidden",
+  "description": "An AI declaration asks students to state how, if at all, they used generative AI in an assignment. Done well, it shifts the conversation from catching students to understanding their process. This guide shows an example declaration tool, explains why you might use one, and walks through what to think about before you do.",
+  "learningResourceType": "guide-with-tool",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "teacher"
+  },
+  "teaches": "Deciding whether and how to ask students to declare their use of generative AI",
+  "inLanguage": [
+    "en"
+  ],
+  "datePublished": "2026-10-20",
+  "isAccessibleForFree": true,
+  "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+  "author": {
+    "@type": "Person",
+    "name": "Corrie Souster",
+    "jobTitle": "Learning Technologist",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "European University Institute"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CIVICA – The European University of Social Sciences",
+    "url": "https://www.civica.eu/"
+  },
+  "isPartOf": {
+    "@type": "Collection",
+    "name": "Teaching and Learning with CIVICA"
+  },
+  "about": [
+    "AI declarations",
+    "Assessment design",
+    "Academic integrity",
+    "Generative AI in teaching"
+  ],
+  "keywords": "AI declaration, AI use statement, assessment, academic integrity, generative AI, AIAS"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,900;1,6..12,400&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-display:"Nunito Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;   /* kept for the declaration codes only */
+  --civica-mark:#244f9d; --civica-rule:rgba(36,79,157,.22); --on-mark:#FFFFFF;
+
+  /* The author's palette, unchanged (all pairs already clear AA).
+     --on-teal is new: text on a teal fill was --form, which breaks in dark mode. */
+  --ground:#f3f6f6; --form:#ffffff; --ink:#172a2d; --ink-soft:#4b6064; --line:#d3dfe0;
+  --teal:#0b6e66; --teal-soft:#dff0ee; --on-teal:#ffffff; --focus:#0b6e66;
+  --stamp:#9a5b0e; --stamp-soft:#fbefdc;
+  --ok:#1f7a45; --ok-soft:#e1f2e8; --care:#a1520b; --care-soft:#fbebdc; --stop:#b02a3a; --stop-soft:#fae3e6;
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --civica-mark:#86acda; --civica-rule:rgba(134,172,218,.26); --on-mark:#0f1a1c;
+  --ground:#0f1a1c; --form:#172426; --ink:#e6efef; --ink-soft:#a9bcbe; --line:#2f4144;
+  --teal:#4fc4b8; --teal-soft:#123532; --on-teal:#0f1a1c; --focus:#8fe0d6;
+  --stamp:#f0b45c; --stamp-soft:#3a2a12;
+  --ok:#6fd39a; --ok-soft:#143222; --care:#f2a35e; --care-soft:#3a2412; --stop:#f28b98; --stop-soft:#3d1a20;
+}
+*{ box-sizing:border-box; }
+[hidden]{ display:none !important; }
+html{ -webkit-text-size-adjust:100%; }
+body{ margin:0; background:var(--ground); color:var(--ink); font-family:var(--font-display); font-size:17px; line-height:1.6; padding-inline:1rem; -webkit-font-smoothing:antialiased; }
+@media (prefers-reduced-motion:reduce){ *{ transition:none !important; animation:none !important; } html{ scroll-behavior:auto; } }
+.wrap{ max-width:62rem; margin:0 auto; padding-block:2rem 3rem; display:grid; gap:3.5rem; }
+h1,h2,h3,h4{ font-family:var(--font-display); text-wrap:balance; line-height:1.15; margin:0; }
+p{ margin:0; }
+a{ color:var(--teal); text-underline-offset:3px; }
+:focus-visible{ outline:3px solid var(--focus); outline-offset:2px; border-radius:4px; }
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* ---------- CIVICA chrome ---------- */
+.skip-link{ position:absolute; left:12px; top:-4rem; z-index:100; background:var(--civica-mark); color:var(--on-mark); font-weight:700; font-size:15px; padding:11px 18px; border-radius:10px; text-decoration:none; transition:top .2s ease; }
+.skip-link:focus{ top:12px; }
+.civica-bar{ border-bottom:1px solid var(--line); margin-inline:-1rem; }
+.civica-bar > div{ max-width:62rem; margin:0 auto; padding:14px 1rem; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.civica-mark{ display:flex; flex-direction:column; gap:2px; text-decoration:none; line-height:1; }
+/* PLACEHOLDER WORDMARK — the CIVICA logo is set in Movement (licensed, NM Type)
+   and cannot be embedded. Swap for the official transparent SVG when available. */
+.civica-wordmark{ font-weight:900; font-size:18px; letter-spacing:.06em; color:var(--civica-mark); }
+.civica-sub{ font-weight:600; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); }
+.ctl{ font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:.03em; background:transparent; color:var(--ink); border:1.5px solid var(--line); border-radius:999px; padding:9px 15px; cursor:pointer; line-height:1; min-height:36px; }
+.ctl:hover{ border-color:var(--civica-mark); color:var(--civica-mark); }
+.ctl-theme{ display:flex; align-items:center; gap:7px; padding-left:12px; }
+.ctl-theme svg{ width:15px; height:15px; flex-shrink:0; }
+
+/* ---------- the author's layout ---------- */
+.hero{ display:grid; gap:1.1rem; padding-top:.5rem; }
+.eyebrow{ font-weight:900; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); }
+.hero h1{ font-size:clamp(2.1rem,5.6vw,3.6rem); font-weight:900; letter-spacing:-.02em; max-width:20ch; }
+.lede{ max-width:62ch; color:var(--ink-soft); font-size:1.13rem; }
+.toc{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.4rem; }
+.toc a{ font-size:.9rem; font-weight:600; text-decoration:none; border:1px solid var(--line); background:var(--form); padding:.35rem .75rem; border-radius:99px; color:var(--ink); }
+.toc a:hover{ border-color:var(--teal); color:var(--teal); }
+section{ display:grid; gap:1.1rem; scroll-margin-top:1.5rem; }
+.sec-head{ display:grid; gap:.35rem; }
+.kicker{ font-weight:900; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); }
+section h2{ font-size:clamp(1.5rem,3.3vw,2.05rem); font-weight:700; }
+.prose{ display:grid; gap:.9rem; max-width:65ch; }
+.note{ border-left:3px solid var(--teal); padding:.15rem 0 .15rem 1rem; color:var(--ink-soft); max-width:65ch; font-size:.97rem; }
+.note b{ color:var(--ink); }
+
+.tool{ background:var(--form); border:1px solid var(--line); border-radius:14px; overflow:hidden; min-width:0; }
+.tool-bar{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:.5rem; align-items:center; padding:.8rem 1.2rem; border-bottom:1px solid var(--line); background:var(--teal-soft); }
+.tool-bar b{ font-size:1.05rem; font-weight:700; }
+.tag{ font-weight:700; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); }
+.tool-body{ padding:1.25rem; display:grid; gap:1.4rem; }
+@media (min-width:640px){ .tool-body{ padding:1.6rem; } }
+.stepper{ display:flex; gap:.4rem; flex-wrap:wrap; }
+.stepper span{ font-size:13px; font-weight:600; padding:.25rem .6rem; border-radius:99px; border:1px solid var(--line); color:var(--ink-soft); }
+.stepper span.on{ background:var(--teal); border-color:var(--teal); color:var(--on-teal); }
+.pane{ display:grid; gap:1rem; }
+.step-h:focus{ outline:none; }
+label.f{ font-weight:700; display:block; margin-bottom:.35rem; }
+input[type=text], textarea{ width:100%; font:inherit; font-size:1rem; color:var(--ink); background:var(--ground); border:1.5px solid var(--line); border-radius:8px; padding:.6rem .75rem; }
+textarea{ resize:vertical; }
+/* The original removed the outline on focus; a ring is kept so focus stays visible. */
+input[type=text]:focus-visible, textarea:focus-visible{ border-color:var(--teal); outline:3px solid var(--focus); outline-offset:1px; }
+::placeholder{ color:var(--ink-soft); opacity:1; }
+.cats{ display:grid; gap:.6rem; }
+.cat{ border:1.5px solid var(--line); border-radius:10px; padding:.8rem .9rem; display:grid; gap:.6rem; }
+.cat:has(input[type=checkbox]:checked){ border-color:var(--teal); background:var(--teal-soft); }
+.cat > label{ display:grid; grid-template-columns:auto auto minmax(0,1fr); gap:.7rem; align-items:start; cursor:pointer; }
+.cat input[type=checkbox]{ margin-top:.3rem; accent-color:var(--teal); width:1.15rem; height:1.15rem; }
+.cat .cid{ font-family:var(--f-mono); font-weight:700; color:var(--teal); font-size:.9rem; padding-top:.15rem; }
+.cat .ct{ font-weight:700; display:block; }
+.cat .cd{ color:var(--ink-soft); font-size:.93rem; display:block; }
+.cat .more{ display:grid; gap:.5rem; padding-left:2.2rem; }
+.small{ font-size:.88rem; color:var(--ink-soft); }
+button{ font:inherit; font-weight:700; font-size:.95rem; cursor:pointer; border-radius:8px; border:1.5px solid var(--teal); background:var(--teal); color:var(--on-teal); padding:.55rem 1.05rem; line-height:1.2; min-height:40px; }
+button.ghost{ background:transparent; color:var(--teal); }
+.row{ display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; }
+.err{ color:var(--stop); font-size:.92rem; font-weight:700; }
+.ghead{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:.7rem; align-items:start; margin-top:.8rem; }
+.ghead:first-child{ margin-top:0; }
+.ghead .gl{ font-weight:900; font-size:1.05rem; width:2rem; height:2rem; display:grid; place-items:center; border-radius:8px; background:var(--teal); color:var(--on-teal); }
+.ghead b{ font-size:1.05rem; display:block; }
+.newtag{ font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--stamp); background:var(--stamp-soft); padding:.1rem .45rem; border-radius:99px; vertical-align:middle; margin-left:.3rem; }
+.statement .sg{ font-weight:700; margin-top:.2rem; }
+.statement .sid{ font-family:var(--f-mono); font-weight:700; color:var(--teal); margin-right:.2rem; }
+.nudges{ margin:0; padding:.8rem 1rem .8rem 2rem; background:var(--care-soft); border-radius:10px; display:grid; gap:.4rem; font-size:.94rem; }
+.receipt{ display:grid; gap:1rem; }
+.codebox{ display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border:2px dashed var(--stamp); background:var(--stamp-soft); border-radius:10px; padding:1rem 1.1rem; }
+.code{ font-family:var(--f-mono); font-weight:700; font-size:clamp(1.25rem,4vw,1.7rem); color:var(--stamp); letter-spacing:.04em; word-break:break-all; }
+.codebox .lbl{ font-weight:900; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--stamp); display:block; margin-bottom:.2rem; }
+.statement{ background:var(--ground); border:1px solid var(--line); border-radius:10px; padding:1rem 1.1rem; font-size:.98rem; display:grid; gap:.6rem; }
+.decode{ font-size:.9rem; color:var(--ink-soft); }
+.decode code{ font-family:var(--f-mono); color:var(--ink); }
+
+.cards{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(min(17rem,100%),1fr)); }
+.card{ background:var(--form); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.2rem; display:grid; gap:.5rem; align-content:start; }
+.card h3{ font-size:1.1rem; font-weight:700; }
+.card p{ font-size:.96rem; color:var(--ink-soft); }
+.card .q{ font-weight:600; color:var(--ink); font-size:.94rem; }
+.check{ background:var(--form); border:1px solid var(--line); border-radius:14px; padding:1.25rem; display:grid; gap:1.1rem; min-width:0; }
+@media (min-width:640px){ .check{ padding:1.6rem; } }
+.qrow{ display:grid; gap:.5rem; padding-bottom:1rem; border-bottom:1px solid var(--line); }
+.qrow:last-of-type{ border-bottom:0; padding-bottom:0; }
+.qrow p{ font-weight:600; }
+.seg{ display:inline-flex; border:1.5px solid var(--line); border-radius:8px; overflow:hidden; flex-wrap:wrap; justify-self:start; }
+.seg label{ padding:.45rem .9rem; cursor:pointer; font-size:.92rem; border-right:1px solid var(--line); position:relative; }
+.seg label:last-child{ border-right:0; }
+.seg input{ position:absolute; opacity:0; pointer-events:none; }
+.seg label:has(input:checked){ background:var(--teal); color:var(--on-teal); font-weight:700; }
+.seg label:has(input:focus-visible){ outline:3px solid var(--focus); outline-offset:-3px; }
+.advice{ display:grid; gap:.6rem; padding:0; margin:0; list-style:none; }
+.advice li{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:.7rem; align-items:start; font-size:.96rem; padding:.65rem .8rem; border-radius:8px; }
+.advice li.ok{ background:var(--ok-soft); } .advice li.care{ background:var(--care-soft); } .advice li.stop{ background:var(--stop-soft); }
+.pill{ font-size:12.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:.15rem .5rem; border-radius:99px; white-space:nowrap; margin-top:.15rem; background:var(--form); }
+.ok .pill{ color:var(--ok); } .care .pill{ color:var(--care); } .stop .pill{ color:var(--stop); }
+.verdict{ font-size:1.15rem; font-weight:700; }
+.compare{ overflow-x:auto; }
+table{ border-collapse:collapse; width:100%; min-width:36rem; font-size:.93rem; background:var(--form); }
+th, td{ border:1px solid var(--line); padding:.6rem .7rem; text-align:left; vertical-align:top; }
+thead th{ background:var(--teal-soft); font-weight:700; }
+tbody th{ font-weight:700; }
+.refs{ font-size:.92rem; color:var(--ink-soft); display:grid; gap:.45rem; max-width:72ch; }
+.refs p{ padding-left:1.4rem; text-indent:-1.4rem; }
+.credit{ font-size:.92rem; color:var(--ink-soft); max-width:65ch; }
+.credit b{ color:var(--ink); }
+.colophon{ border-top:1px solid var(--line); padding-top:1.2rem; color:var(--ink-soft); font-size:.9rem; display:grid; gap:.5rem; max-width:72ch; }
+.colophon b{ color:var(--ink); }
+
+/* ---------- CIVICA attribution ---------- */
+.attribution{ margin-top:.8rem; padding-top:1.2rem; border-top:1.5px solid var(--civica-rule); display:grid; gap:.45rem; font-size:14px; color:var(--ink); }
+.attr-value{ flex:1 1 18rem; min-width:0; }
+.attr-line{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .55rem; margin:0; }
+.attr-label{ font-weight:900; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--civica-mark); flex:0 0 7.5rem; }
+.attribution a{ color:var(--ink); text-decoration-color:var(--civica-rule); }
+.attr-role{ color:var(--ink-soft); font-size:13px; }
+.attr-funding{ margin:.5rem 0 0; font-size:13px; color:var(--ink-soft); }
+@media (max-width:600px){ .attr-label{ flex:1 0 100%; } .civica-sub{ display:none; } }
+@media print{
+  .civica-bar, .skip-link, .toc, .tool .row, #copyMsg{ display:none !important; }
+  body{ background:#fff; color:#000; } .card, .cat, .qrow, tr{ break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main" id="t-skip"></a>
+<div class="civica-bar">
+  <div>
+    <!-- PLACEHOLDER: swap for the official transparent CIVICA SVG if available. -->
+    <a class="civica-mark" href="https://www.civica.eu/" target="_blank" rel="noopener noreferrer" id="t-mark">
+      <span class="civica-wordmark" aria-hidden="true">CIVICA</span>
+      <span class="civica-sub" id="t-mark-sub" aria-hidden="true"></span>
+    </a>
+    <button type="button" class="ctl ctl-theme" id="theme-btn" aria-pressed="false">
+      <span id="theme-icon" aria-hidden="true"></span><span id="theme-label"></span>
+    </button>
+  </div>
+</div>
+<main class="wrap" id="main">
+
+<header class="hero">
+<p class="eyebrow" data-k="hero01"></p>
+<h1 data-k="hero02"></h1>
+<p class="lede" data-k="hero03"></p>
+<nav class="toc" id="toc">
+<a data-k="hero04" href="#demo"></a>
+<a data-k="hero05" href="#why"></a>
+<a data-k="hero06" href="#consider"></a>
+<a data-k="hero07" href="#ready"></a>
+<a data-k="hero08" href="#practice"></a>
+</nav>
+</header>
+
+<section id="demo">
+<div class="sec-head"><span class="kicker" data-k="demo01"></span><h2 data-k="demo02"></h2></div>
+<div class="prose"><p data-k="demo03"></p></div>
+<div aria-labelledby="tool-title" class="tool" role="region">
+<div class="tool-bar"><b data-k="demo04" id="tool-title"></b><span class="tag" data-k="demo05"></span></div>
+<div class="tool-body">
+<div aria-hidden="true" class="stepper"><span class="on" data-k="demo06" id="st1"></span><span data-k="demo07" id="st2"></span><span data-k="demo08" id="st3"></span></div>
+<div class="pane" id="p1"><h3 class="sr-only step-h" data-ui="stepHeading0" id="h-p1" tabindex="-1"></h3>
+<div><label class="f" data-k="demo09" for="aTitle"></label><input id="aTitle" type="text"/></div>
+<div><label class="f" data-k="demo10" for="aCourse"></label><input id="aCourse" type="text"/></div>
+<div class="row"><button data-k="demo11" id="to2" type="button"></button></div>
+</div>
+<div class="pane" hidden="" id="p2"><h3 class="sr-only step-h" data-ui="stepHeading1" id="h-p2" tabindex="-1"></h3>
+<p data-k="demo12"></p>
+<div class="cats" id="cats"></div>
+<p class="err" data-k="demo13" hidden="" id="catErr" role="alert"></p>
+<div class="row"><button class="ghost" data-k="demo14" id="back1" type="button"></button><button data-k="demo15" id="to3" type="button"></button></div>
+</div>
+<div class="pane receipt" hidden="" id="p3"><h3 class="sr-only step-h" data-ui="stepHeading2" id="h-p3" tabindex="-1"></h3>
+<div class="codebox">
+<div><span class="lbl" data-k="demo16"></span><span class="code" id="outCode"></span></div>
+<button class="ghost" data-k="demo17" id="copyCode" type="button"></button>
+</div>
+<div class="statement" id="outStatement"></div>
+<ul class="nudges" hidden="" id="outNotes"></ul>
+<div class="row"><button data-k="demo18" id="copyStmt" type="button"></button><button class="ghost" data-k="demo19" id="back2" type="button"></button><button class="ghost" data-k="demo20" id="restart" type="button"></button></div>
+<p aria-live="polite" class="small" id="copyMsg"></p>
+<p class="decode" id="decode"></p>
+</div>
+</div>
+</div>
+<p class="note" data-k="demo21"></p>
+<p class="credit" data-k="demo22"></p>
+</section>
+
+<section id="why">
+<div class="sec-head"><span class="kicker" data-k="why01"></span><h2 data-k="why02"></h2></div>
+<div class="cards">
+<div class="card"><h3 data-k="why03"></h3><p data-k="why04"></p></div>
+<div class="card"><h3 data-k="why05"></h3><p data-k="why06"></p></div>
+<div class="card"><h3 data-k="why07"></h3><p data-k="why08"></p></div>
+<div class="card"><h3 data-k="why09"></h3><p data-k="why10"></p></div>
+<div class="card"><h3 data-k="why11"></h3><p data-k="why12"></p></div>
+</div>
+</section>
+
+<section id="consider">
+<div class="sec-head"><span class="kicker" data-k="consider01"></span><h2 data-k="consider02"></h2></div>
+<div class="prose"><p data-k="consider03"></p></div>
+<div class="cards">
+<div class="card"><h3 data-k="consider04"></h3><p class="q" data-k="consider05"></p><p data-k="consider06"></p></div>
+<div class="card"><h3 data-k="consider07"></h3><p class="q" data-k="consider08"></p><p data-k="consider09"></p></div>
+<div class="card"><h3 data-k="consider10"></h3><p class="q" data-k="consider11"></p><p data-k="consider12"></p></div>
+<div class="card"><h3 data-k="consider13"></h3><p class="q" data-k="consider14"></p><p data-k="consider15"></p></div>
+<div class="card"><h3 data-k="consider16"></h3><p class="q" data-k="consider17"></p><p data-k="consider18"></p></div>
+<div class="card"><h3 data-k="consider19"></h3><p class="q" data-k="consider20"></p><p data-k="consider21"></p></div>
+<div class="card"><h3 data-k="consider22"></h3><p class="q" data-k="consider23"></p><p data-k="consider24"></p></div>
+<div class="card"><h3 data-k="consider25"></h3><p class="q" data-k="consider26"></p><p data-k="consider27"></p></div>
+<div class="card"><h3 data-k="consider28"></h3><p class="q" data-k="consider29"></p><p data-k="consider30"></p></div>
+</div>
+</section>
+
+<section id="ready">
+<div class="sec-head"><span class="kicker" data-k="ready01"></span><h2 data-k="ready02"></h2></div>
+<div class="prose"><p data-k="ready03"></p></div>
+<div class="check" id="check"></div>
+<div class="check">
+<p aria-live="polite" class="verdict" id="verdict"></p>
+<ul class="advice" id="advice"></ul>
+</div>
+</section>
+
+<section id="practice">
+<div class="sec-head"><span class="kicker" data-k="practice01"></span><h2 data-k="practice02"></h2></div>
+<div class="compare">
+<table>
+<thead><tr><th scope="col" data-k="practice03"></th><th scope="col" data-k="practice04"></th><th scope="col" data-k="practice05"></th></tr></thead>
+<tbody>
+<tr><th scope="row" data-k="practice06"></th><td data-k="practice07"></td><td data-k="practice08"></td></tr>
+<tr><th scope="row" data-k="practice09"></th><td data-k="practice10"></td><td data-k="practice11"></td></tr>
+<tr><th scope="row" data-k="practice12"></th><td data-k="practice13"></td><td data-k="practice14"></td></tr>
+<tr><th scope="row" data-k="practice15"></th><td data-k="practice16"></td><td data-k="practice17"></td></tr>
+<tr><th scope="row" data-k="practice18"></th><td data-k="practice19"></td><td data-k="practice20"></td></tr>
+<tr><th scope="row" data-k="practice21"></th><td data-k="practice22"></td><td data-k="practice23"></td></tr>
+<tr><th scope="row" data-k="practice24"></th><td data-k="practice25"></td><td data-k="practice26"></td></tr>
+</tbody>
+</table>
+</div>
+<p class="note" data-k="practice27"></p>
+</section>
+<section id="reading">
+<div class="sec-head"><span class="kicker" data-k="reading01"></span><h2 data-k="reading02"></h2></div>
+<div class="refs">
+<p data-k="reading03"></p>
+<p data-k="reading04"></p>
+<p data-k="reading05"></p>
+</div>
+</section>
+<footer class="colophon">
+<p data-k="foot01"></p>
+
+</footer>
+
+  <!-- ===== CIVICA attribution — mirrors the JSON-LD in <head> ===== -->
+  <div class="attribution">
+    <p class="attr-line"><span class="attr-label" id="t-lbl-author"></span>
+      <span>Corrie Souster <span class="attr-role">Learning Technologist, European University Institute</span></span></p>
+    <p class="attr-line"><span class="attr-label" id="t-lbl-published"></span><time id="published-date"></time></p>
+    <p class="attr-line"><span class="attr-label" id="t-lbl-part"></span>
+      <a href="https://www.civica.eu/" target="_blank" rel="noopener noreferrer">Teaching and Learning with CIVICA<span class="sr-only" id="t-newtab-1"></span></a></p>
+    <p class="attr-line"><span class="attr-label" id="t-lbl-licence"></span><span id="t-licence" class="attr-value"></span></p>
+    <p class="attr-funding" id="t-funding"></p>
+  </div>
+</main>
+<script>
+(function(){
+const PUBLISHED = "2026-10-20";
+const LICENCE_URL = "https://creativecommons.org/licenses/by-nc-sa/4.0/";
+const LICENCE_NAME = "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)";
+
+/* ===== Language packs — English only for now (the author's text, verbatim).
+   Category IDs (I1, C5 …) and the code format are language-neutral. ===== */
+const LANGS = window.LANGS = {}; LANGS.en = {
+ "tocLabel": "On this page",
+ "hero01": "A guide for teachers",
+ "hero02": "Declaring AI use: making it visible, not hidden",
+ "hero03": "An AI declaration asks students to state how, if at all, they used generative AI in an assignment. Done well, it shifts the conversation from catching students to understanding their process. This guide shows an example declaration tool, explains why you might use one, and walks through what to think about before you do.",
+ "hero04": "Try the tool",
+ "hero05": "Why use one",
+ "hero06": "Things to consider",
+ "hero07": "Is it right for your task?",
+ "hero08": "In practice",
+ "demo01": "Example tool",
+ "demo02": "Try it as a student would",
+ "demo03": "Students tick each way they used AI, add a short description, and get a declaration code and a plain-language statement to attach to their submission. The categories run from ideation through composition and generation to revision, so the declaration shows both *what* AI did and *how much* the student changed it.",
+ "demo04": "AI use declaration",
+ "demo05": "Demo · nothing is saved",
+ "demo06": "1 Assignment",
+ "demo07": "2 How you used AI",
+ "demo08": "3 Your declaration",
+ "demo09": "Assignment title",
+ "demo10": "Course or module code",
+ "demo11": "Next",
+ "demo12": "Tick everything that applies, across all four groups. If you didn't use AI at all, choose N0 at the end.",
+ "demo13": "Choose at least one option to continue.",
+ "demo14": "Back",
+ "demo15": "Create my declaration",
+ "demo16": "Declaration code",
+ "demo17": "Copy code",
+ "demo18": "Copy statement",
+ "demo19": "Edit answers",
+ "demo20": "Start again",
+ "demo21": "**Why a code as well as a statement?** The code is short enough to paste into a submission field and easy for teachers to scan or filter across a class. The statement keeps the human explanation, which is where the learning conversation starts.",
+ "demo22": "Declaration tool and category framework created by **Corrie Souster**, Learning Technologist, European University Institute (EUI).",
+ "why01": "Purpose",
+ "why02": "Why teachers use AI declarations",
+ "why03": "Transparency over suspicion",
+ "why04": "AI detectors are unreliable and can wrongly flag students, including those writing in a second language. A declaration asks students to tell you, which puts trust and honesty at the centre.",
+ "why05": "Reflection on process",
+ "why06": "Describing how they used AI makes students think about their own learning: what they did themselves, what they handed off, and whether that helped.",
+ "why07": "Clarity about expectations",
+ "why08": "A list of categories shows students which uses are acceptable for this task. Many students are unsure, and uncertainty leads to both over-caution and misuse.",
+ "why09": "Insight for your teaching",
+ "why10": "Across a class, declarations show you how students actually use AI. That can inform task design, feedback and where students need more support.",
+ "why11": "Practice in professional norms",
+ "why12": "Many publishers, employers and professions now expect people to disclose AI assistance. A declaration builds that habit early.",
+ "consider01": "Before you start",
+ "consider02": "Things to think about",
+ "consider03": "A declaration is only as useful as the context around it. These are the questions to settle first, ideally with colleagues teaching the same course.",
+ "consider04": "Your institution's AI policy",
+ "consider05": "What is allowed, by default and per assignment?",
+ "consider06": "Your categories and wording should match the policy exactly. If the policy sets permitted levels of AI use per task, the declaration should mirror them so students compare like with like.",
+ "consider07": "The assignment itself",
+ "consider08": "Is the task resistant to AI, open to it, or built around it?",
+ "consider09": "On a task that AI can complete easily, a declaration does not make it secure. On an in-class or highly personal task, a declaration may add little. It works best where some AI use is permitted and you want to see how.",
+ "consider10": "Consistency with the brief",
+ "consider11": "Does the brief say which categories are permitted?",
+ "consider12": "State permitted uses in the task brief and in the tool, so students never have to guess. A declaration that lists uses the brief forbids is confusing.",
+ "consider13": "What happens next",
+ "consider14": "How will you respond to what students declare?",
+ "consider15": "If honest declarations lead to penalties, students will stop being honest. Decide in advance how declared use affects marking, and tell students before they submit.",
+ "consider16": "Verification and its limits",
+ "consider17": "Will you check declarations, and how?",
+ "consider18": "A declaration is self-report. Pair it with process evidence where it matters: drafts, version history, a short viva or a reflective note. Avoid relying on AI detectors as proof.",
+ "consider19": "Student understanding",
+ "consider20": "Do students know what each category means?",
+ "consider21": "\"Used AI to improve my writing\" can mean fixing a comma or rewriting every paragraph. Give an example for each category and discuss them in class.",
+ "consider22": "Equity and access",
+ "consider23": "Do all students have the same access to AI tools?",
+ "consider24": "Paid tools, assistive technology and language support differ between students. Make sure the categories don't penalise students who use AI-based assistive tools as a reasonable adjustment.",
+ "consider25": "Data and privacy",
+ "consider26": "Where do declarations go, and who sees them?",
+ "consider27": "Prefer a tool that runs in the browser and stores nothing, or collect declarations inside your learning platform where data rules already apply. Avoid third-party forms that collect student data without approval.",
+ "consider28": "Workload",
+ "consider29": "Will anyone actually read them?",
+ "consider30": "A short code makes declarations quick to scan. Decide whether you read every statement or sample them, and keep the student's effort proportionate to the task.",
+ "ready01": "Self-check",
+ "ready02": "Is a declaration right for this assignment?",
+ "ready03": "Answer for one specific assignment. You'll get tailored points to act on. Nothing is stored.",
+ "practice01": "In practice",
+ "practice02": "Making it work in your course",
+ "practice03": "Stage",
+ "practice04": "What to do",
+ "practice05": "Why it matters",
+ "practice06": "**Task design**",
+ "practice07": "Decide which AI uses are permitted and write them into the brief.",
+ "practice08": "Students declare against a clear standard, not a guess.",
+ "practice09": "**Introduce it**",
+ "practice10": "Walk through the tool in class with a worked example of each category.",
+ "practice11": "Shared understanding of what each category means.",
+ "practice12": "**During the task**",
+ "practice13": "Ask students to keep notes of AI use as they go, such as prompts or screenshots.",
+ "practice14": "Declarations written from memory at the end are less accurate.",
+ "practice15": "**Submission**",
+ "practice16": "Collect the code and statement with the work, for example in a text field or as the first page.",
+ "practice17": "One place to look; no separate form to chase.",
+ "practice18": "**Marking**",
+ "practice19": "Read declarations alongside the work and respond as you said you would.",
+ "practice20": "Consistent treatment keeps declarations honest.",
+ "practice21": "**Feedback**",
+ "practice22": "Comment on the AI use itself where useful: did it help, and how could it be used better?",
+ "practice23": "Turns the declaration into a learning moment.",
+ "practice24": "**Review**",
+ "practice25": "Look at the pattern across the class at the end of the term.",
+ "practice26": "Informs next year's task design and AI guidance.",
+ "practice27": "**Using a learning platform?** Most platforms let you add a required text field or a short survey to an assignment submission. Asking for the declaration code there keeps everything in one place and inside your institution's data agreements.",
+ "reading01": "Further reading",
+ "reading02": "Background and frameworks",
+ "reading03": "Perkins, M., Furze, L., Roe, J., & MacVaugh, J. (2024). The Artificial Intelligence Assessment Scale (AIAS): A framework for ethical integration of generative AI in educational assessment. *Journal of University Teaching and Learning Practice, 21*(6).",
+ "reading04": "Weber-Wulff, D., et al. (2023). Testing of detection tools for AI-generated text. *International Journal for Educational Integrity, 19*, 26.",
+ "reading05": "Lodge, J. M., Howard, S., Bearman, M., Dawson, P., & associates (2023). *Assessment reform for the age of artificial intelligence.* Tertiary Education Quality and Standards Agency (TEQSA).",
+ "foot01": "**How to cite this guide:** Developed by Corrie Souster, EUI – Florence School of Transnational Governance, using Claude (Anthropic), 2026.",
+ "value_aTitle": "Essay 2: Should homework be compulsory?",
+ "value_aCourse": "EDU1204",
+ "groups": [
+  {
+   "g": "I",
+   "name": "Ideation",
+   "hint": "Using AI to think, plan and find your way into the topic.",
+   "items": [
+    {
+     "id": "I1",
+     "t": "Brainstorming",
+     "d": "Idea generation, topic suggestions, question formation.",
+     "s": "I used AI for brainstorming: generating ideas, topic suggestions or questions."
+    },
+    {
+     "id": "I2",
+     "t": "Structuring",
+     "d": "Outline creation, argument flow, thesis refinement.",
+     "s": "I used AI to help structure my work, such as outlining, argument flow or refining my thesis."
+    },
+    {
+     "id": "I3",
+     "t": "Summarising",
+     "d": "Condensing readings, extracting key points.",
+     "s": "I used AI to summarise readings or extract key points."
+    },
+    {
+     "id": "I4",
+     "t": "Research direction",
+     "d": "Generating keywords, suggesting research angles.",
+     "s": "I used AI to suggest search keywords or research angles."
+    },
+    {
+     "id": "I5",
+     "t": "Source finding",
+     "d": "Locating articles, books, data or references. Every source must be checked in the original.",
+     "s": "I used AI to help find sources, and I checked that each source exists and says what I cite it for."
+    }
+   ]
+  },
+  {
+   "g": "C",
+   "name": "Composition",
+   "hint": "Using AI on writing that started as yours.",
+   "items": [
+    {
+     "id": "C1",
+     "t": "Editing support",
+     "d": "Grammar, spelling and clarity improvements only.",
+     "s": "I used AI for grammar, spelling and clarity improvements only."
+    },
+    {
+     "id": "C2",
+     "t": "Rephrasing",
+     "d": "Sentence-level rewriting while preserving original meaning.",
+     "s": "I used AI to rephrase some of my sentences while keeping their meaning."
+    },
+    {
+     "id": "C3",
+     "t": "Expansion",
+     "d": "Expanding student-written bullet points into prose.",
+     "s": "I used AI to expand my own bullet points into prose."
+    },
+    {
+     "id": "C4",
+     "t": "Translation",
+     "d": "Translating between languages or simplifying language level.",
+     "s": "I used AI to translate or simplify language."
+    },
+    {
+     "id": "C5",
+     "t": "Drafting",
+     "d": "AI helped draft sections interactively with guidance.",
+     "s": "I drafted sections interactively with AI, guiding it as I went."
+    }
+   ]
+  },
+  {
+   "g": "G",
+   "name": "Generation",
+   "hint": "AI produced content that appears in your submission.",
+   "items": [
+    {
+     "id": "G1",
+     "t": "Text blocks",
+     "d": "Paragraphs or sections inserted with minimal change.",
+     "s": "My submission includes paragraphs or sections generated by AI with minimal change."
+    },
+    {
+     "id": "G2",
+     "t": "Code generation",
+     "d": "Programming code generated by AI.",
+     "s": "My submission includes programming code generated by AI."
+    },
+    {
+     "id": "G3",
+     "t": "Media generation",
+     "d": "AI-generated images, diagrams, audio or video.",
+     "s": "My submission includes AI-generated images, diagrams, audio or video."
+    },
+    {
+     "id": "G4",
+     "t": "Data analysis",
+     "d": "AI-generated calculations or interpretations of datasets.",
+     "s": "My submission includes calculations or interpretations of data produced by AI."
+    }
+   ]
+  },
+  {
+   "g": "R",
+   "name": "Revision",
+   "hint": "How you changed AI output before using it. Pair these with C5 or a G category.",
+   "items": [
+    {
+     "id": "R1",
+     "t": "Light editing",
+     "d": "Minor wording changes to AI output.",
+     "s": "I made minor wording changes to the AI output."
+    },
+    {
+     "id": "R2",
+     "t": "Substantive revision",
+     "d": "Significant rewriting and restructuring.",
+     "s": "I substantially rewrote and restructured the AI output."
+    },
+    {
+     "id": "R3",
+     "t": "Critical integration",
+     "d": "AI output evaluated, challenged and selectively incorporated.",
+     "s": "I evaluated and challenged the AI output and used only selected parts."
+    },
+    {
+     "id": "R4",
+     "t": "Transformative reworking",
+     "d": "AI content heavily reworked into substantially original form.",
+     "s": "I reworked the AI content so heavily that the result is substantially my own."
+    }
+   ]
+  },
+  {
+   "g": "N",
+   "name": "No AI use",
+   "hint": "",
+   "items": [
+    {
+     "id": "N0",
+     "t": "No AI use",
+     "d": "No use of AI; fully human work.",
+     "s": "I did not use AI at any stage. This is fully my own work."
+    }
+   ]
+  }
+ ],
+ "prefill": {
+  "I1": [
+   "ChatGPT",
+   "Asked for arguments for and against compulsory homework to decide my position."
+  ],
+  "I5": [
+   "Perplexity",
+   "Found three studies; I read each one and dropped one that did not exist."
+  ],
+  "C1": [
+   "Grammarly",
+   "Accepted spelling and grammar fixes; ignored rewrite suggestions."
+  ]
+ },
+ "suggestedAddition": "Suggested addition",
+ "toolUsed": "Tool used",
+ "toolPlaceholder": "for example, Copilot",
+ "howLabel": "Briefly, how?",
+ "howPlaceholder": "One or two sentences",
+ "stmtHead": "AI use statement for {title}",
+ "stmtFallbackTitle": "this assignment",
+ "stmtTool": " Tool: {tool}.",
+ "closingNone": "I confirm this declaration is accurate.",
+ "closingUsed": "I take responsibility for all content I have submitted and confirm this declaration is accurate.",
+ "codeLine": "Declaration code: {code}",
+ "noteNoRevision": "You declared AI-generated or AI-drafted content but no Revision category. If you changed that content, add the R category that describes how.",
+ "noteRevisionOnly": "Revision categories describe changes to AI-generated content. If you didn’t use C5 or a G category, check whether you need an R category.",
+ "noteSources": "AI tools can invent sources that look real. Make sure every reference you found this way exists and supports your point.",
+ "decode": "How to read the code: each part before the dash is a category ticked (for example `I1` is brainstorming), and `{check}` is a short check value tied to the course code, so a mistyped or invented code is easy to spot.",
+ "copied": "{label} copied.",
+ "copyCodeLabel": "Code",
+ "copyStmtLabel": "Statement",
+ "copyBlocked": "Copying is blocked here. Select the text and copy it manually.",
+ "questions": [
+  {
+   "id": "pol",
+   "q": "Does your institution have a written policy on AI use in assessment?",
+   "a": {
+    "yes": [
+     "ok",
+     "Policy",
+     "Match your categories and wording to the policy, and link to it from the declaration."
+    ],
+    "no": [
+     "stop",
+     "Policy",
+     "Without a policy, students can't know what is acceptable. Agree a position with your department before asking for declarations."
+    ],
+    "unsure": [
+     "care",
+     "Policy",
+     "Find out before you launch. Your categories must not contradict institutional rules."
+    ]
+   }
+  },
+  {
+   "id": "perm",
+   "q": "Is some AI use permitted for this assignment?",
+   "a": {
+    "yes": [
+     "ok",
+     "Permitted use",
+     "This is where declarations add most value: they show how students used what is allowed."
+    ],
+    "no": [
+     "care",
+     "Permitted use",
+     "If no AI use is allowed, a simple 'no AI' confirmation may be enough. Consider whether a full declaration adds anything."
+    ],
+    "unsure": [
+     "stop",
+     "Permitted use",
+     "Decide this first. A declaration can't do its job if students don't know what is allowed."
+    ]
+   }
+  },
+  {
+   "id": "res",
+   "q": "Is the task designed to be resistant to AI (for example, in-class, personal or process-based)?",
+   "a": {
+    "yes": [
+     "ok",
+     "Task design",
+     "Good. A declaration complements this but can't replace it. Use it to see how students used AI along the way."
+    ],
+    "no": [
+     "care",
+     "Task design",
+     "A declaration alone does not make the task secure. Add process evidence such as drafts, a reflection or a short conversation."
+    ],
+    "unsure": [
+     "care",
+     "Task design",
+     "Check whether AI could complete the task with little student input. If it could, redesign before relying on declarations."
+    ]
+   }
+  },
+  {
+   "id": "brief",
+   "q": "Does the task brief state which AI uses are allowed?",
+   "a": {
+    "yes": [
+     "ok",
+     "Brief",
+     "Keep the brief and the declaration categories identical so students compare like with like."
+    ],
+    "no": [
+     "care",
+     "Brief",
+     "Add permitted uses to the brief. Students shouldn't discover the rules for the first time in the declaration."
+    ],
+    "unsure": [
+     "care",
+     "Brief",
+     "Re-read it with a student's eyes: would they know what's allowed?"
+    ]
+   }
+  },
+  {
+   "id": "resp",
+   "q": "Have you decided how declared AI use will affect marking?",
+   "a": {
+    "yes": [
+     "ok",
+     "Response",
+     "Tell students before they submit. Predictable consequences keep declarations honest."
+    ],
+    "no": [
+     "stop",
+     "Response",
+     "Decide this before launch. If honesty can lead to unexpected penalties, students will under-declare."
+    ],
+    "unsure": [
+     "care",
+     "Response",
+     "Agree an approach with colleagues so students are treated consistently."
+    ]
+   }
+  },
+  {
+   "id": "teach",
+   "q": "Will you explain the categories to students with examples?",
+   "a": {
+    "yes": [
+     "ok",
+     "Understanding",
+     "Worked examples make declarations far more consistent."
+    ],
+    "no": [
+     "care",
+     "Understanding",
+     "Without examples, students interpret categories very differently. A ten-minute walkthrough helps a lot."
+    ],
+    "unsure": [
+     "care",
+     "Understanding",
+     "Plan at least one example per category in the task brief or in class."
+    ]
+   }
+  },
+  {
+   "id": "data",
+   "q": "Will declarations be collected somewhere your institution already approves (for example, your learning platform)?",
+   "a": {
+    "yes": [
+     "ok",
+     "Data",
+     "Keeping declarations inside approved systems avoids extra data protection work."
+    ],
+    "no": [
+     "stop",
+     "Data",
+     "Check with your data protection officer before collecting student information in a new tool."
+    ],
+    "unsure": [
+     "care",
+     "Data",
+     "Find out where the data goes. A browser-only tool that stores nothing is the simplest option."
+    ]
+   }
+  }
+ ],
+ "answerYes": "Yes",
+ "answerNo": "No",
+ "answerUnsure": "Not sure",
+ "pillStop": "Do first",
+ "pillCare": "Consider",
+ "pillOk": "In place",
+ "verdictStop1": "Settle 1 key question before you launch.",
+ "verdictStopN": "Settle {n} key questions before you launch.",
+ "verdictCare1": "Nearly ready: 1 thing to tighten up.",
+ "verdictCareN": "Nearly ready: {n} things to tighten up.",
+ "verdictOk": "Ready to go. A declaration fits this assignment well.",
+ "stepHeading0": "Step 1 of 3: Assignment",
+ "stepHeading1": "Step 2 of 3: How you used AI",
+ "stepHeading2": "Step 3 of 3: Your declaration",
+ "docTitle": "Declaring AI use: making it visible, not hidden | CIVICA",
+ "skip": "Skip to content",
+ "markLabel": "CIVICA — Teaching and Learning (opens in a new tab)",
+ "markSub": "Teaching & Learning",
+ "themeToDark": "Dark",
+ "themeToLight": "Light",
+ "themeToDarkLabel": "Switch to dark mode",
+ "themeToLightLabel": "Switch to light mode",
+ "newTab": " (opens in a new tab)",
+ "lblAuthor": "Author",
+ "lblPublished": "Published",
+ "lblPart": "Part of",
+ "lblLicence": "Licence",
+ "licence": "This work is licensed under {link}, except where otherwise noted.",
+ "funding": "Co-funded by the European Union"
+};
+const T = LANGS.en;
+
+const ADDED = ["I5"];       /* flagged "Suggested addition" by the author */
+const NONE_ID = "N0";
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+/* Restricted markup: **bold**, *italic*, `code`. Escaped first. */
+const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\*(.+?)\*/g,"<i>$1</i>").replace(/`(.+?)`/g,"<code>$1</code>");
+const fill = (s, v) => s.replace(/\{(\w+)\}/g, (_, k) => v[k]);
+
+/* ---- static text ---- */
+document.documentElement.lang = "en";
+document.title = T.docTitle;
+document.querySelectorAll("[data-k]").forEach(el => { el.innerHTML = rich(T[el.dataset.k]); });
+document.querySelectorAll("[data-ui]").forEach(el => { el.textContent = T[el.dataset.ui]; });
+$("toc").setAttribute("aria-label", T.tocLabel);
+$("aTitle").value = T.value_aTitle; $("aCourse").value = T.value_aCourse;
+
+/* ===== Declaration tool (the author's logic) ===== */
+const GROUPS = T.groups;
+const CATS = GROUPS.flatMap(g => g.items.map(i => Object.assign({ group:g.g, none:i.id === NONE_ID, added:ADDED.includes(i.id) }, i)));
+const catsEl = $("cats");
+GROUPS.forEach(gr => {
+  const head = document.createElement("div"); head.className = "ghead";
+  head.innerHTML = '<span class="gl" aria-hidden="true">' + gr.g + '</span><span><b>' + esc(gr.name) + '</b>' + (gr.hint ? '<span class="small">' + esc(gr.hint) + '</span>' : '') + '</span>';
+  catsEl.appendChild(head);
+  gr.items.forEach(item => {
+    const c = CATS.find(x => x.id === item.id);
+    const w = document.createElement("div"); w.className = "cat";
+    w.innerHTML = '<label for="c' + c.id + '"><input type="checkbox" id="c' + c.id + '" value="' + c.id + '"><span class="cid">' + c.id + '</span><span><span class="ct">' + esc(c.t) + (c.added ? ' <span class="newtag">' + esc(T.suggestedAddition) + '</span>' : '') + '</span><span class="cd">' + esc(c.d) + '</span></span></label>'
+      + (c.none ? '' : '<div class="more" hidden><div><label class="f" for="tool' + c.id + '">' + esc(T.toolUsed) + '</label><input type="text" id="tool' + c.id + '" placeholder="' + esc(T.toolPlaceholder) + '"></div><div><label class="f" for="how' + c.id + '">' + esc(T.howLabel) + '</label><textarea id="how' + c.id + '" rows="2" placeholder="' + esc(T.howPlaceholder) + '"></textarea></div></div>');
+    catsEl.appendChild(w);
+    const cb = w.querySelector("input[type=checkbox]");
+    cb.addEventListener("change", () => {
+      const more = w.querySelector(".more"); if (more) more.hidden = !cb.checked;
+      if (cb.checked){
+        if (c.none){ CATS.filter(x => !x.none).forEach(x => { const o = $("c" + x.id); o.checked = false; o.closest(".cat").querySelector(".more").hidden = true; }); }
+        else { $("c" + NONE_ID).checked = false; }
+      }
+      $("catErr").hidden = true;
+    });
+  });
+});
+/* Prefill a realistic example */
+Object.keys(T.prefill).forEach(id => { $("c" + id).checked = true; $("c" + id).closest(".cat").querySelector(".more").hidden = false; $("tool" + id).value = T.prefill[id][0]; $("how" + id).value = T.prefill[id][1]; });
+
+const panes = ["p1","p2","p3"];
+/* Moving between steps hides the button that was pressed, so focus moves
+   to the new step's heading instead of being lost. */
+function show(n, moveFocus){
+  panes.forEach((p, i) => $(p).hidden = i !== n);
+  ["st1","st2","st3"].forEach((s, i) => $(s).classList.toggle("on", i === n));
+  if (moveFocus) $("h-" + panes[n]).focus();
+}
+$("to2").addEventListener("click", () => show(1, true));
+$("back1").addEventListener("click", () => show(0, true));
+$("back2").addEventListener("click", () => show(1, true));
+$("restart").addEventListener("click", () => {
+  CATS.forEach(c => { $("c" + c.id).checked = false; const m = $("c" + c.id).closest(".cat").querySelector(".more"); if (m){ m.hidden = true; $("tool" + c.id).value = ""; $("how" + c.id).value = ""; } });
+  show(0, true);
+});
+
+/* Short check value so a mistyped or invented code is noticeable */
+function checkValue(str){ let h = 0; for (const ch of str) h = (h * 31 + ch.charCodeAt(0)) % 1296; return h.toString(36).toUpperCase().padStart(2, "0"); }
+
+let plainStatement = "";
+$("to3").addEventListener("click", () => {
+  const sel = CATS.filter(c => $("c" + c.id).checked);
+  if (!sel.length){ $("catErr").hidden = false; return; }
+  const course = ($("aCourse").value.trim() || "COURSE").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  const core = sel.map(c => c.id).join(".");
+  const code = core + "-" + checkValue(course + core);
+  const title = $("aTitle").value.trim() || T.stmtFallbackTitle;
+  const headLine = fill(T.stmtHead, { title });
+  let html = '<p><b>' + esc(headLine) + '</b>' + (course ? ' (' + esc(course) + ')' : '') + '</p>';
+  let plain = headLine + (course ? ' (' + course + ')' : '') + '\n';
+  GROUPS.forEach(gr => {
+    const inG = sel.filter(c => c.group === gr.g); if (!inG.length) return;
+    if (gr.g !== "N"){ html += '<p class="sg">' + esc(gr.name) + '</p>'; plain += '\n' + gr.name + '\n'; }
+    inG.forEach(c => {
+      let extra = "";
+      if (!c.none){
+        const tool = $("tool" + c.id).value.trim(), how = $("how" + c.id).value.trim();
+        if (tool) extra += fill(T.stmtTool, { tool });
+        if (how) extra += ' ' + (/[.!?]$/.test(how) ? how : how + '.');
+      }
+      html += '<p><span class="sid">' + c.id + '</span> ' + esc(c.s + extra) + '</p>'; plain += c.id + ' ' + c.s + extra + '\n';
+    });
+  });
+  const none = sel.some(c => c.none);
+  const closing = none ? T.closingNone : T.closingUsed;
+  html += '<p>' + esc(closing) + '</p>'; plain += '\n' + closing + '\n' + fill(T.codeLine, { code });
+
+  /* Gentle consistency prompts for the student */
+  const has = p => sel.some(c => c.id.startsWith(p));
+  const notes = [];
+  if ((has("G") || $("cC5").checked) && !has("R")) notes.push(T.noteNoRevision);
+  if (has("R") && !has("G") && !$("cC5").checked) notes.push(T.noteRevisionOnly);
+  if ($("cI5").checked) notes.push(T.noteSources);
+  $("outNotes").innerHTML = notes.map(n => '<li>' + esc(n) + '</li>').join("");
+  $("outNotes").hidden = !notes.length;
+
+  $("outCode").textContent = code; $("outStatement").innerHTML = html; plainStatement = plain;
+  $("decode").innerHTML = rich(fill(T.decode, { check: code.slice(-2) }));
+  $("copyMsg").textContent = "";
+  show(2, true);
+});
+
+function copy(text, label){
+  const blocked = () => { $("copyMsg").textContent = T.copyBlocked; };
+  const done = () => { $("copyMsg").textContent = fill(T.copied, { label }); };
+  try { navigator.clipboard.writeText(text).then(done, blocked); } catch (e) { blocked(); }
+}
+$("copyCode").addEventListener("click", () => copy($("outCode").textContent, T.copyCodeLabel));
+$("copyStmt").addEventListener("click", () => copy(plainStatement, T.copyStmtLabel));
+
+/* ===== Readiness self-check (the author's logic) ===== */
+const QS = T.questions;
+const ANS = { yes:T.answerYes, no:T.answerNo, unsure:T.answerUnsure };
+const checkEl = $("check");
+QS.forEach((q, i) => {
+  const r = document.createElement("div"); r.className = "qrow";
+  r.innerHTML = '<p id="ql' + q.id + '">' + (i + 1) + '. ' + esc(q.q) + '</p><div class="seg" role="radiogroup" aria-labelledby="ql' + q.id + '">'
+    + ["yes","no","unsure"].map(v => '<label><input type="radio" name="r' + q.id + '" id="r' + q.id + v + '" value="' + v + '"' + (v === "unsure" ? ' checked' : '') + '>' + esc(ANS[v]) + '</label>').join("") + '</div>';
+  checkEl.appendChild(r);
+});
+function evalCheck(){
+  const items = QS.map(q => q.a[(document.querySelector('input[name="r' + q.id + '"]:checked') || {}).value || "unsure"]);
+  const order = { stop:0, care:1, ok:2 };
+  items.sort((a, b) => order[a[0]] - order[b[0]]);
+  const stops = items.filter(x => x[0] === "stop").length, cares = items.filter(x => x[0] === "care").length;
+  $("verdict").textContent = stops ? (stops > 1 ? fill(T.verdictStopN, { n:stops }) : T.verdictStop1)
+    : cares ? (cares > 1 ? fill(T.verdictCareN, { n:cares }) : T.verdictCare1)
+    : T.verdictOk;
+  const label = { stop:T.pillStop, care:T.pillCare, ok:T.pillOk };
+  $("advice").innerHTML = items.map(x => '<li class="' + x[0] + '"><span class="pill">' + esc(label[x[0]]) + '</span><span><b>' + esc(x[1]) + '.</b> ' + esc(x[2]) + '</span></li>').join("");
+}
+checkEl.addEventListener("change", evalCheck);
+/* Example state so the result is meaningful at first view */
+[["pol","yes"],["perm","yes"],["res","no"],["brief","yes"],["resp","unsure"],["teach","yes"],["data","yes"]].forEach(([id, v]) => { $("r" + id + v).checked = true; });
+evalCheck();
+
+/* ===== CIVICA frame ===== */
+$("t-skip").textContent = T.skip;
+$("t-mark").setAttribute("aria-label", T.markLabel);
+$("t-mark-sub").textContent = T.markSub;
+$("t-lbl-author").textContent = T.lblAuthor; $("t-lbl-published").textContent = T.lblPublished;
+$("t-lbl-part").textContent = T.lblPart; $("t-lbl-licence").textContent = T.lblLicence;
+$("t-newtab-1").textContent = T.newTab; $("t-funding").textContent = T.funding;
+$("t-licence").innerHTML = esc(T.licence).replace("{link}", '<a href="' + LICENCE_URL + '" target="_blank" rel="noopener noreferrer license">' + esc(LICENCE_NAME) + '<span class="sr-only">' + esc(T.newTab) + '</span></a>');
+const pd = $("published-date"); pd.setAttribute("datetime", PUBLISHED);
+pd.textContent = new Intl.DateTimeFormat("en-GB", { day:"numeric", month:"long", year:"numeric", timeZone:"UTC" }).format(new Date(PUBLISHED + "T12:00:00Z"));
+
+const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 1.8v2.4M12 19.8v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M1.8 12h2.4M19.8 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>';
+const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a7 7 0 0 0 11.1 11.1z"/></svg>';
+function updateThemeButton(){
+  const dark = document.documentElement.dataset.theme === "dark";
+  $("theme-icon").innerHTML = dark ? SUN : MOON;
+  $("theme-label").textContent = dark ? T.themeToLight : T.themeToDark;
+  $("theme-btn").setAttribute("aria-pressed", String(dark));
+  $("theme-btn").setAttribute("aria-label", dark ? T.themeToLightLabel : T.themeToDarkLabel);
+}
+$("theme-btn").addEventListener("click", () => {
+  document.documentElement.dataset.theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  updateThemeButton();
+});
+updateThemeButton();
+})();
+</script>
+</body>
+</html>
